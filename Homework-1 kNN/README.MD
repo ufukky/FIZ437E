@@ -116,4 +116,4 @@ This operation is performed with diffrent k values (1,3,5,7,9) and diffrent epoc
 ## Performance of k-NN algorithm for diffrent k values and epoch limits (Test Curve)
 
 ![alt text](https://github.com/ufukky/FIZ437E/blob/main/Homework-1%20kNN/matlab/testCurve_EpochvsAcc_k139.jpg?raw=true)
-As aspected, with higher epoch (Training Sample), accuracy of k-NN algorithm is increased.
+\nAs aspected, with higher epoch (Training Sample), accuracy of k-NN algorithm is increased.
