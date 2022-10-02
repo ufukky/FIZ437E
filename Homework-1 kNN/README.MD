@@ -85,5 +85,32 @@ leastKNeighbours = sorted(leastKNeighbours, key=itemgetter('distance'))
             resultsForKs.append("frog")
     return resultsForKs
 ```
+## Calculating Accuracy
+After calculating all guesses for all training data, we just need to compare guessed and real values and store right and wrong guesses. 
+```
+testResults = [[],[],[],[],[]] # {guessedLabel : 'frog', realLabel : 'frog'}
+for birdFile in os.listdir(birdsTrainingDataDirectory):        #test knn with all birds and frogs via iterating through 100 test images
+    testFile = os.path.join(birdsTrainingDataDirectory, birdFile)
+    if os.path.isfile(testFile):    
+        arrayResult = k_NNMain(testFile,epochLimit) 
+        for _k in range(0,5):
+            testResults[_k].append({'guessedLabel' : arrayResult[_k], 'realLabel' : 'bird'})
+for frogFİle in os.listdir(frogsTrainingDataDirectory):        #test knn with all birds and frogs via iterating through 100 test images
+    testFile = os.path.join(frogsTrainingDataDirectory, frogFİle)
+    if os.path.isfile(testFile):    
+        arrayResult = k_NNMain(testFile,epochLimit)
+        for _k in range(0,5):
+            testResults[_k].append({'guessedLabel' : arrayResult[_k], 'realLabel' : 'frog'})
 
-
+for _k in range(0,5): 
+    rightGuessCount = 0         #storing number of right and wrong guesses for calculating accuracy for each value for k
+    wrongGuessCount = 0
+    for testResult in testResults[_k]:
+        if(testResult['guessedLabel'] == testResult['realLabel']):
+            rightGuessCount = rightGuessCount + 1
+        else:
+            wrongGuessCount = wrongGuessCount + 1
+```
+# Results
+This operation is performed with diffrent k values (1,3,5,7,9) and diffrent epochs for both traning and test data for seeing the effects of diffrent paramters to resulting accuracies.
+## Performance of k-NN algorithm for diffrent k values and epoch limits (Test Curve)
