@@ -116,4 +116,11 @@ This operation is performed with diffrent k values (1,3,5,7,9) and diffrent epoc
 ## Performance of k-NN algorithm for diffrent k values and epoch limits (Test Curve)
 
 ![alt text](https://github.com/ufukky/FIZ437E/blob/main/Homework-1%20kNN/matlab/testCurve_EpochvsAcc_k139.jpg?raw=true)
-\nAs aspected, with higher epoch (Training Sample), accuracy of k-NN algorithm is increased.
+
+As aspected, with higher epoch (Training Sample), accuracy of k-NN algorithm is increased and apporoched to %64 percent.
+
+## Traing Curve
+![alt text](https://github.com/ufukky/FIZ437E/blob/main/Homework-1%20kNN/matlab/trainingCurve_AccsK_k13579_epochall.jpg?raw=true)
+
+With k=1 its is guarentied to have a traning data with distace zero (which is itself), so training accucary of k-NN with k=1 is always %100.
+But all k's > 1 will results traning data itself (100 percent right guess) and other neighbours which can be falsely callasfied, therefore with increaseing k value, we can expect to training accuracy to approach same accuracy as test curve (~ 0.64)
