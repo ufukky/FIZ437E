@@ -26,5 +26,18 @@ while imageCount > 0:
         print("error")
         imageIndex = imageIndex + 1
         continue
-#choosing 50 random bird images with hand and transfring them to ./data/test/birds
+```
+then by choosing 50 random bird images with hand and transfring them to ./data/test/birds, test and traning data preperation of birds are done.
+
+## Data for frogs
+64x64, RGB iamges of frogs are downloaded from https://images.cv/dataset/frog-image-classification-dataset, RGB frog images then turned into greyscale and saved as 450 traning and 50 test data to respected folders.
+```
+#RGB frog images is donwloaded from https://images.cv/dataset/frog-image-classification-dataset
+for filename in os.listdir('./data/train/frogs'):
+    f = os.path.join('./data/train/frogs', filename)
+    image = cv2.imread(f,0)                             #reading greyscale frog image from training data for frogs (0->greyscale)
+    image = cv2.resize(image,(64,64), interpolation = cv2.INTER_AREA) #resizeing greyscale frog image to 64x64
+    cv2.imwrite('./data/train/frogs/{}.jpg'.format(filename), image)  #saving prepared image to training images of frogs
+
+#choosing 50 random frog images with hand and transfering them to ./data/test/frogss
 ```
