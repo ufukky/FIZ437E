@@ -52,4 +52,38 @@ testImageVec = testImage.ravel()
 frogTrainImage = cv2.imread(file,0)                 #load it to 64x64 matrix 
 frogTrainImageVec = frogTrainImage.ravel()    
 ....
+def evaluateNN(kNArray,trainImageVec,testImageVec,label,fileName):
+    dist = np.linalg.norm(trainImageVec - testImageVec) #euler distance between test and training data
+    return {
+            "label":label,                              
+            "fileName": fileName,
+            "distance": dist
+    }
 ```
+sorting leastKNeighbours array which contains all euler distances of givin test data to all traing datas, results in neighbours in incresing distances.
+Using majorty vote methode with first 'k' closest neigbours k-NN algoritm makes its decition.
+```
+leastKNeighbours = sorted(leastKNeighbours, key=itemgetter('distance'))
+
+    resultsForKs = [] #storing guessed labels for input image with k=1,3,5,7,9 at the same epoch for faster calculation time.
+    for l in range(0,5):
+        k=2*l+1
+
+        _leastKNeighbours = leastKNeighbours[0:k]                    #limiting the closest neigbors array via getting only closest k neigbours
+
+        numberOfFrogNeigbours = 0                                   #final evaluation of bird data with majorty vote methode
+        numberOfBirdNeigbours = 0
+        for leastNeighbour in _leastKNeighbours: 
+            if(leastNeighbour['label'] == 'frog'):
+                numberOfFrogNeigbours = numberOfFrogNeigbours + 1
+            elif(leastNeighbour['label'] == 'bird'):
+                numberOfBirdNeigbours = numberOfBirdNeigbours + 1
+
+        if(numberOfBirdNeigbours > numberOfFrogNeigbours):
+            resultsForKs.append("bird")
+        else:
+            resultsForKs.append("frog")
+    return resultsForKs
+```
+
+
