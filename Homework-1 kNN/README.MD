@@ -41,3 +41,15 @@ for filename in os.listdir('./data/train/frogs'):
 
 #choosing 50 random frog images with hand and transfering them to ./data/test/frogss
 ```
+# Usin k-NN algorithm
+## Steps
+For any given test image, we need to turn 64x64 matrix of values from 0 to 255 into 4096 dimentional vetor using .ravel() function of numpy for calculating euler distance from test image to training image in proccess of calculation.
+```
+....
+testImage = cv2.imread(testImageDir,0)         #loading 64x64 pixel greyscale image to 64x64 matrix with values from 0 to 255
+testImageVec = testImage.ravel()    
+....
+frogTrainImage = cv2.imread(file,0)                 #load it to 64x64 matrix 
+frogTrainImageVec = frogTrainImage.ravel()    
+....
+```
