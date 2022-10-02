@@ -114,5 +114,6 @@ for _k in range(0,5):
 # Results
 This operation is performed with diffrent k values (1,3,5,7,9) and diffrent epochs for both traning and test data for seeing the effects of diffrent paramters to resulting accuracies.
 ## Performance of k-NN algorithm for diffrent k values and epoch limits (Test Curve)
-https://github.com/ufukky/FIZ437E/blob/main/Homework-1%20kNN/matlab/testCurve_EpochvsAcc_k139.jpg
+
 ![alt text](https://github.com/ufukky/FIZ437E/blob/main/Homework-1%20kNN/matlab/testCurve_EpochvsAcc_k139.jpg?raw=true)
+As aspected, with higher epoch (Training Sample), accuracy of k-NN algorithm is increased.
