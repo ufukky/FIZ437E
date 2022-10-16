@@ -83,4 +83,15 @@ testError = testError**(0.5)
 
 return trainingError,testError,trainingLoss,testLoss
 ```
+# Comparing training and validation error for 10 samples
+```
+#----------------------------------------------- 10 Samples and validation versus training error ------------------
+'''
+avgTrain = 0
+avgTest = 0
+for n in range(100):
+    trainingError,testError,trainingLoss,testLoss = polyFit(samplePointCount=10)
+    avgTest += testLoss/100
+    avgTrain += trainingError/100
+```
 
