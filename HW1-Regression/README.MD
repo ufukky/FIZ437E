@@ -27,3 +27,35 @@ legend.append("J0")
 plt.plot(X,Y,linewidth = 0.1,alpha=0.2)
 legend.append("J0 (Noisy)")
 ```
+# Sampling Random points for test and training
+```
+trainSampleCount = int(samplePointCount * 0.8)
+trainIndexs = np.sort(np.random.randint(0,lenOfx,trainSampleCount)) 
+trainX = np.array(X[trainIndexs])
+trainY = np.array(Y[trainIndexs])
+plt.scatter(trainX,trainY,s=[10 for n in range(len(trainIndexs))])
+legend.append("Training Samples")
+print(trainX)
+print(trainY)
+
+testSampleCount = 10
+testIndexs = np.sort(np.random.randint(0,lenOfx,testSampleCount))
+testX = np.array(X[testIndexs])
+testY = np.array(Y[testIndexs])
+plt.scatter(testX,testY,s=[1 for n in range(len(testIndexs))])
+legend.append("Test Samples")
+
+#------------------------------------ Polynomial Regression ----------------------------------------------
+trainXreshaped = trainX.reshape(-1,1)
+trainYreshaped = trainY.reshape(-1,1)
+
+poly = PolynomialFeatures(degree=degree)
+xPolyTrain = poly.fit_transform(trainXreshaped)
+poly.fit(xPolyTrain,trainYreshaped)
+linReg = LinearRegression()
+linReg.fit(xPolyTrain,trainYreshaped)   
+yPredCont = linReg.predict(poly.fit_transform(X.reshape(-1,1)))
+
+plt.plot(X,yPredCont)
+legend.append("Predicted Polynomial")
+```
