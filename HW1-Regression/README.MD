@@ -96,3 +96,21 @@ for n in range(100):
 ```
 ![alt text](https://github.com/ufukky/FIZ437E/blob/main/HW1-Regression/10sampleTrainVsTestErr.png?raw=true)
 
+# L2 Loss for validation set versus sample points
+```
+train = []
+test = []
+sampleCounts = [10,11,12,13,14,15,16,17,18,19,20,30,40,50,60,70,80,90,100,1000,10000]
+for samplePointCount in sampleCounts:
+    avgTrain = 0
+    avgTest = 0
+    for n in range(100):
+        trainingError,testError,trainingLoss,testLoss = polyFit(samplePointCount=samplePointCount)
+        avgTest += testLoss/100
+        avgTrain += trainingLoss/100
+    train.append(avgTrain)
+    test.append(avgTest)
+    print(f"sc:{samplePointCount} | trainErr:{avgTrain} | testErr:{avgTest}")
+```
+![alt text](https://github.com/ufukky/FIZ437E/blob/main/HW1-Regression/nSampleVsL2LossVal.png?raw=true)
+
