@@ -94,4 +94,5 @@ for n in range(100):
     avgTest += testLoss/100
     avgTrain += trainingError/100
 ```
+![alt text](https://github.com/ufukky/FIZ437E/blob/main/HW1-Regression/10sampleTrainVsTestErr.png?raw=true)
 
