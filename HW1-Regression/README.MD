@@ -114,3 +114,41 @@ for samplePointCount in sampleCounts:
 ```
 ![alt text](https://github.com/ufukky/FIZ437E/blob/main/HW1-Regression/nSampleVsL2LossVal.png?raw=true)
 
+# Overfitted Curve Examples
+![alt text](https://github.com/ufukky/FIZ437E/blob/main/HW1-Regression/overfitting.png?raw=true)
+
+# Ridge regression for eliminating overfitting with various aplha values
+```
+xTrain = [0.8608, 1.752, 2.13616, 2.23888, 3.33984, 4.05392, 4.12464, 5.35536, 5.62784, 7.07184]
+xTrain = np.array(xTrain)
+
+yTrain = [0.7812559,0.714773,0.54731242,0.34609456,-0.03401954,-0.21559265,-0.37846568,-0.13502542,0.04664801,0.07457167]
+yTrain = np.array(yTrain)
+plt.scatter(xTrain,yTrain)
+legend.append("Training Points")
+
+trainXreshaped = xTrain.reshape(-1,1)
+trainYreshaped = yTrain.reshape(-1,1)
+
+poly = PolynomialFeatures(degree=8)
+xPolyTrain = poly.fit_transform(trainXreshaped)
+poly.fit(xPolyTrain,trainYreshaped)
+linReg = LinearRegression()
+linReg.fit(xPolyTrain,trainYreshaped)   
+yPredCont = linReg.predict(poly.fit_transform(X.reshape(-1,1)))
+
+#plt.plot(X,yPredCont,linewidth = 0.5,alpha=0.7)
+#legend.append("Predicted Polynomial")
+
+alphas = [0.0000002* n for n in range(0,6)]
+for alpha in alphas:
+    ridge = Ridge(alpha = alpha)
+    ridge.fit(xPolyTrain,trainYreshaped)
+    ridgePredCont = ridge.predict(poly.fit_transform(X.reshape(-1,1)))
+    plt.plot(X,ridgePredCont,linewidth=0.7)
+    if alpha == 0:
+        legend.append(f'Overfitting (alpha:{alpha})')
+    else:
+        legend.append(f"Ridge Regression (alpha:{alpha})")
+```
+![alt text](https://github.com/ufukky/FIZ437E/blob/main/HW1-Regression/ridge.png?raw=true)
