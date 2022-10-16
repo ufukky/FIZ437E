@@ -61,3 +61,26 @@ yPredCont = linReg.predict(poly.fit_transform(X.reshape(-1,1)))
 plt.plot(X,yPredCont)
 legend.append("Predicted Polynomial")
 ```
+# Calculating L2 Loss and Root Mean Squared Error for training and validation set
+```
+trainingError = 0
+trainingLoss = 0
+for trainIndex in trainIndexs:
+    yJ0 = J0[trainIndex]
+    yPred = yPredCont[trainIndex]
+    trainingError += ((yJ0 -yPred)**2)/trainSampleCount
+    trainingLoss += (yJ0 -yPred)**2
+trainingError = trainingError**(0.5)
+
+testError = 0
+testLoss = 0
+for testIndex in testIndexs:
+    yJ0 = Y[testIndex]
+    yPred = yPredCont[testIndex]
+    testError += ((yJ0 -yPred)**2)/testSampleCount
+    testLoss += (yJ0 - yPred)**2
+testError = testError**(0.5)
+
+return trainingError,testError,trainingLoss,testLoss
+```
+
