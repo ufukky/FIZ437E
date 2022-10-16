@@ -44,7 +44,9 @@ testX = np.array(X[testIndexs])
 testY = np.array(Y[testIndexs])
 plt.scatter(testX,testY,s=[1 for n in range(len(testIndexs))])
 legend.append("Test Samples")
-
+```
+# Polynomial Regression
+```
 #------------------------------------ Polynomial Regression ----------------------------------------------
 trainXreshaped = trainX.reshape(-1,1)
 trainYreshaped = trainY.reshape(-1,1)
